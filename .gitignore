@@ -1,0 +1,7 @@
+/target/classes/*
+/.idea/compiler.xml
+/.idea/jarRepositories.xml
+# Default ignored files
+/shelf/
+/workspace.xml
+/.idea/*
