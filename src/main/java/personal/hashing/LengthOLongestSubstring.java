@@ -1,9 +1,6 @@
 package personal.hashing;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class LengthOLongestSubstring {
 
@@ -20,7 +17,33 @@ public class LengthOLongestSubstring {
         return Math.max(max, set.size());
     }
 
+    public int lengthOfLongestSubstring(String A) {
+        int n = A.length();
+        int i = 0, j=0;
+
+        Map<Character, Integer> map = new HashMap<>();
+        int max = 0;
+        while (i<n && j<n) {
+            char charJ = A.charAt(j);
+            if (map.containsKey(charJ)) {
+                while (i <= j) {
+                    char charI = A.charAt(i);
+                    map.remove(charI);
+                    i++;
+                    if (charI == charJ) {
+                        break;
+                    }
+                }
+            } else {
+                map.put(charJ, 1);
+                j++;
+            }
+            max = Math.max(max, j-i);
+        }
+        return max;
+    }
+
     public static void main(String[] args) {
-        System.out.println(new LengthOLongestSubstring().longestUniqueSubsttr("abcdhcbayr"));
+        System.out.println(new LengthOLongestSubstring().lengthOfLongestSubstring("abcabcbb"));
     }
 }
