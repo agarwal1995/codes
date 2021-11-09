@@ -1,6 +1,4 @@
-package personal;
-
-import java.util.Scanner;
+package personal.others;
 
 public class Extra {
     public static void main(String[] args) {

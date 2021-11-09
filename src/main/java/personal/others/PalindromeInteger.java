@@ -1,4 +1,4 @@
-package personal;
+package personal.others;
 
 public class PalindromeInteger {
 

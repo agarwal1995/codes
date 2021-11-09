@@ -1,4 +1,4 @@
-package personal;
+package personal.others;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

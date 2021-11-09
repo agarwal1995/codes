@@ -1,4 +1,4 @@
-package personal.stacjs;
+package personal.stack;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
