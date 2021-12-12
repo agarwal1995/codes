@@ -1,0 +1,122 @@
+public static void main(String[] args) {
+		ArrayList<Integer> myList = new ArrayList<Integer>(10);
+		System.out.println("Size : " + myList.size());
+}
+
+public static void main(String[] args) {
+		ArrayList<Integer> myList = new ArrayList<Integer>(10);
+		myList.add(1, 1);
+		System.out.println("Size : " + myList.size());
+}
+/****
+public class Test {
+
+	public static void main(String[] args) {
+		//display(1);
+		display(null);
+	}
+
+	public static void display(String msg) {
+		System.out.println("String Input : " + msg);
+	}
+
+	public static void display(Integer num) {
+		System.out.println("Integer Input : " + num);
+	}
+
+	public static void display(int num) {
+		System.out.println("int input - " + num);
+	}
+}
+
+public static double testException() {
+	try {
+		return 6;
+	} catch (Exception e) {
+		return 66;
+	} finally {
+		return 666;
+	}
+}
+
+public static double testException() {
+	try {
+		return 6/0;
+	} catch (Exception e) {
+		return 66;
+	} finally {
+		return 666;
+	}
+}
+
+
+/* check
+public class A {
+    private static void hello() {
+        System.out.println("Hello");
+    }
+
+	public static void main(String[] args) throws Exception {
+		try {
+			A a = null;
+			a.hello();
+		} catch (Throwable e) {
+			System.exit(0);
+		} finally {
+			System.out.println("Finally !");
+		}
+	}
+}
+
+
+public static void main(String[] args) throws Exception {
+	String str = "  ";
+	str.trim();
+	System.out.println(str.equals("") + " "  + str.isEmpty());
+}
+
+
+public final class A {
+	no setter method
+	// getter rerturn deep copy of the reference
+
+}
+
+
+
+1. Given a string return the character with highest no of occurance.
+
+a. Ignore case
+b. Ignore Whitespaces
+
+Input => Elephant
+Output => E,
+
+
+
+
+
+Input => Hello World
+Output => L,3
+
+Set<T> set = new HashSet<>();
+
+
+public enum OrderStatus {
+
+}
+
+
+A 10
+B 20
+C 30
+D 20
+
+
+30 1
+20 2
+10 1
+
+
+
+Select max(salary) from Employee where salary <> (Select max(salary) from Employee)
