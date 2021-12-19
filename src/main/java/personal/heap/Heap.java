@@ -1,65 +1,83 @@
 package personal.heap;
 
+import lombok.Data;
+import lombok.ToString;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PriorityQueue;
 
+@Data
+@ToString
 public class Heap {
-    List<Integer> list;
-    int n;
 
-    void heapify(int i) {
-        int left = 2*i+1;
-        int right = 2*i+2;
-        int largest = i;
-        if (left<n && list.get(left) > list.get(i)) {
-            largest = left;
-        }
-        if(right<n && list.get(right) > list.get(largest)) {
-            largest = right;
-        }
-        swap(i, largest);
-        if (i!=largest) {
-            heapify(largest);
+    private List<Integer> list;
+    private int heapSize;
+
+    Heap() {
+        list = new ArrayList<>();
+        heapSize = 0;
+    }
+
+    public void add(Integer t) {
+        list.add(t);
+        heapSize++;
+        int i = heapSize-1;
+        while (true) {
+            int parent = parent(i);
+            if(parent>= 0 && list.get(parent)>list.get(i)) {
+                swap(i, parent);
+                i = parent;
+            } else {
+                break;
+            }
         }
     }
 
-    void buildHeap() {
-        for(int i = n/2;i>=0;i--) {
+    public Integer peek() {
+        if(heapSize == 0) {
+            return null;
+        }
+        return list.get(--heapSize);
+    }
+
+    public Integer poll() {
+        if (heapSize == 0) {
+            return null;
+        }
+        Integer polledElement = list.get(0);
+        heapSize--;
+        list.set(0, list.get(heapSize));
+        list.remove(heapSize);
+        for(int i = heapSize/2;i>=0;i--) {
             heapify(i);
         }
+        return polledElement;
     }
 
-    public void sort() {
-        int k=n;
-        for(int i=k-1;i> 0;i--) {
-            swap(i, 0);
-            n--;
-            heapify(0);
+    private void heapify(int i) {
+        int leftChild  = 2*i + 1;
+        int rightChild = 2*i + 2;
+        int smallest = i;
+        if(leftChild<heapSize && list.get(leftChild)< list.get(i)) {
+            smallest = leftChild;
         }
-        n = list.size();
+        if(rightChild<heapSize && list.get(rightChild) < list.get(smallest)) {
+            smallest = rightChild;
+        }
+        if(smallest!=i) {
+            swap(i, smallest);
+            heapify(smallest);
+        }
     }
 
     private void swap(int i, int j) {
-        int t = list.get(i);
+        int temp = list.get(i);
         list.set(i, list.get(j));
-        list.set(j, t);
+        list.set(j, temp);
     }
 
-    public int get() {
-        return list.get(0);
-    }
-
-    public static void main(String[] args) {
-        Heap heap = new Heap();
-        heap.list = new ArrayList<>();
-        int[] Array = {1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17};
-        for(int x : Array){
-            heap.list.add(x);
-        }
-        heap.n = heap.list.size();
-        heap.buildHeap();
-        System.out.println(heap.list);
-        heap.sort();
-        System.out.println(heap.list);
+    private int parent(int i) {
+        return (i-1)/2;
     }
 }
