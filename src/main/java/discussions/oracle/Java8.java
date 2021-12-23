@@ -20,7 +20,8 @@ public class Java8 {
         employees.add(new Employee("B",10));
         employees.add(new Employee("B",1));
 
-        Map<String, Optional<Employee>> map = employees.stream().collect(Collectors.groupingBy(Employee::getDepartment,
+        Map<String, Optional<Employee>> map = employees.stream()
+                .collect(Collectors.groupingBy(Employee::getDepartment,
                 Collectors.reducing(BinaryOperator.maxBy((o1,o2)-> o1.salary.compareTo(o2.salary)))));
         System.out.println(map);
     }
