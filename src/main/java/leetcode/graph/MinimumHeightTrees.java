@@ -85,35 +85,38 @@ public class MinimumHeightTrees {
             Queue<Integer> queue = new LinkedList<>();
             for (int i=0;i<n;i++) {
                 if (outdegree[i]==1) {
+                    outdegree[i] = 0;
                     queue.add(i);
                 }
             }
 
-            while (!queue.isEmpty()) {
+            int xy = n;
+            while (n>2) {
 
-                int polledElement = queue.poll();
-                n--;
-                outdegree[polledElement]--;
-                for(Integer x : graph.adjMat.get(polledElement)) {
-                    outdegree[x]--;
-                    if (outdegree[x]==1) {
-                        queue.add(x);
+                n = n-queue.size();
+                Queue<Integer> secondQueue = new LinkedList<>();
+
+                while(!queue.isEmpty()) {
+                    int polledElement = queue.poll();
+                    for(Integer x : graph.adjMat.get(polledElement)) {
+                        outdegree[x]--;
+                        if (outdegree[x]==1) {
+                            secondQueue.add(x);
+                        }
                     }
                 }
-                if(n<=2) {
-                    break;
-                }
+                queue = secondQueue;
+
+                // second approach instead of using secondQueue run inner while loop til size
             }
 
             List<Integer> sol = new ArrayList<>();
-            if(n==2) {
-                while (!queue.isEmpty()) {
-                    int r = outdegree[queue.poll()];
-                    if(r!=0)
-                        sol.add(r);
-                }
-            } else {
+            while (!queue.isEmpty()) {
                 sol.add(queue.poll());
+            }
+
+            if(sol.size()==0) {
+                sol.add(0);
             }
             return  sol;
         }
