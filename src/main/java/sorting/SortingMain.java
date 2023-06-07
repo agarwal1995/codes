@@ -6,9 +6,12 @@ public class SortingMain {
 
     public static void main(String[] args) {
         String[] strings = {"This","is","gonna","be","legendary","and","that's","my","spot"};
-        Integer[] integers = {23,42,86,78,43,97,23,12,65};
-        useSelection(strings, integers);
-        useInsertion(strings, integers);
+        Integer[] integers = {42,23,86,78,43,97,23,12,65};
+        SortingUtil.print(strings);
+        SortingUtil.print(integers);
+//        useSelection(strings, integers);
+//        useInsertion(strings, integers);
+//        useMergeSort(strings, integers);
     }
 
     private static void useSelection(String[] strings, Integer[] integers) {
@@ -31,5 +34,14 @@ public class SortingMain {
         insertionSort.sort(strings, (String t1,String t2) -> t1.compareTo(t2));
         insertionSort.sort(integers, Integer::compareTo);
         insertionSort.sort(integers, Comparator.reverseOrder());
+    }
+
+    private static void useMergeSort(String[] strings, Integer[] integers) {
+        MergeSort mergeSort = new MergeSort();
+        System.out.println("Merge Sort");
+        mergeSort.mergeSort(strings, 0, strings.length-1, String::compareTo);
+        mergeSort.mergeSort(integers, 0, integers.length-1, Integer::compareTo);
+        SortingUtil.print(strings);
+        SortingUtil.print(integers);
     }
 }
