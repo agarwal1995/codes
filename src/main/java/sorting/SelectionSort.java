@@ -18,6 +18,5 @@ public class SelectionSort {
                 SortingUtil.swap(array, i, minIndex);
             }
         }
-        SortingUtil.print(array);
     }
 }

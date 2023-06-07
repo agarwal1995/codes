@@ -14,8 +14,6 @@ public class InsertionSort {
                 }
                 break;
             }
-//            SortingUtil.print(array);
         }
-        SortingUtil.print(array);
     }
 }
