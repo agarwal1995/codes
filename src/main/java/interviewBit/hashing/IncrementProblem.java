@@ -5,6 +5,10 @@ import java.io.InputStreamReader;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Given a stream of numbers A. On arrival of each number, you need to increase its first occurrence by 1 and include this in the stream.
+ * Return the final stream of numbers.
+ */
 public class IncrementProblem {
 
     public static void main(String[] args) throws Exception {
@@ -14,6 +18,12 @@ public class IncrementProblem {
         System.out.println(new IncrementProblem().solve(list));
     }
 
+    /**
+     * Maintain a map of value to set of sorted indexes
+     * add new element to result everyTime
+     * update result for the idx if found
+     * add/update values to the map
+     */
     public ArrayList<Integer> solve(ArrayList<Integer> A) {
         ArrayList<Integer> result = new ArrayList<>();
 
