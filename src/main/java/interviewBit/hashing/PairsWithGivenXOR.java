@@ -5,8 +5,16 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+
+/**
+ * Given an 1D integer array A containing N distinct integers.
+ * Find the number of unique pairs of integers in the array whose XOR is equal to B.
+ */
 public class PairsWithGivenXOR {
 
+    /**
+     * Maintain a set to find B XOR ith element, if set contains increase count and remove the corresponding element from set
+     */
     public int solve(ArrayList<Integer> A, int B) {
 
         int count = 0;
