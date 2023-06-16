@@ -5,8 +5,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Determine if a Sudoku is valid, according to: <a href="http://sudoku.com.au/TheRules.aspx">...</a>
+ */
 public class ValidSudoku {
 
+    /**
+     * Check for duplicates elements at row, column, and 9 3*3 box level
+     */
     public int isValidSudoku(final List<String> A) {
         int[][] sudoku = new int[9][9];
 
@@ -21,9 +27,6 @@ public class ValidSudoku {
                 }
             }
         }
-//        System.out.println(checkRow(sudoku));
-//        System.out.println(checkColumn(sudoku));
-//        System.out.println(checkForBox(sudoku));
         if(checkRow(sudoku) && checkColumn(sudoku) && checkForBox(sudoku)) {
             return 1;
         }
@@ -31,6 +34,9 @@ public class ValidSudoku {
 
     }
 
+    /**
+     * num[10] used to find duplicate in a row
+     */
     private boolean checkRow(int[][] sudoku) {
         int i = 0;
         int[] num = new int[9];
@@ -49,6 +55,9 @@ public class ValidSudoku {
         return true;
     }
 
+    /**
+     * num[10] used to find duplicate in a column
+     */
     private boolean checkColumn(int[][] sudoku) {
         int i = 0;
         int[] num ;
@@ -67,6 +76,9 @@ public class ValidSudoku {
         return true;
     }
 
+    /**
+     * check for duplicate in a 3*3 box
+     */
     private boolean checkForBox(int[][] sudoku) {
         int k = 0;
         for (k=0;k<9;k++) {
@@ -74,12 +86,9 @@ public class ValidSudoku {
             for(int i=(k/3)*3;i<(k/3)*3+3;i++) {
                 int l = (k%3) * 3;
                 for(int j=l;j<l+3;j++) {
-                    System.out.println("k: " + k +  "  i:" + i + "  j:" + j);
                     if(sudoku[i][j]!=-1) {
                         num[sudoku[i][j]]++;
                         if(num[sudoku[i][j]]>1) {
-                            System.out.println("k: " + k +  "  i:" + i + "  j:" + j);
-                            System.out.println();
                             return false;
                         }
                     }
