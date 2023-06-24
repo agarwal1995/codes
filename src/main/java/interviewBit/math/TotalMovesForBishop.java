@@ -1,5 +1,11 @@
 package interviewBit.math;
 
+/**
+ * Given the position of a Bishop (A, B) on an 8 * 8 chessboard.
+ * Your task is to count the total number of squares that can be visited by the Bishop in one move.
+ * The position of the Bishop is denoted using row and column number of the chessboard.
+ * @author raag
+ */
 public class TotalMovesForBishop {
     public int solve(int A, int B) {
         System.out.println(Math.min(A-1, B-1));
@@ -13,13 +19,3 @@ public class TotalMovesForBishop {
         System.out.println(new TotalMovesForBishop().solve(4,4));
     }
 }
-
-//        1 2 3 4 5 6 7 8
-//        1 2 3 4 5 6 7 8
-//        1 2 3 4 5 6 7 8
-//        1 2 3 4 5 6 7 8
-//        1 2 3 4 5 6 7 8
-//        1 2 3 4 5 6 7 8
-//        1 2 3 4 5 6 7 8
-//        1 2 3 4 5 6 7 8
-
