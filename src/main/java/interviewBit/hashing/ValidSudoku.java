@@ -1,9 +1,6 @@
 package interviewBit.hashing;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Determine if a Sudoku is valid, according to: <a href="http://sudoku.com.au/TheRules.aspx">...</a>
@@ -13,26 +10,26 @@ public class ValidSudoku {
     /**
      * Check for duplicates elements at row, column, and 9 3*3 box level
      */
-    public int isValidSudoku(final List<String> A) {
-        int[][] sudoku = new int[9][9];
-
-        int k = -1;
-        for(String s:A) {
-            k++;
-            for (int i = 0; i < s.length(); i++) {
-                if(s.charAt(i) == '.') {
-                    sudoku[k][i] = -1;
-                } else {
-                    sudoku[k][i] = Integer.parseInt(String.valueOf(s.charAt(i)));
-                }
-            }
-        }
-        if(checkRow(sudoku) && checkColumn(sudoku) && checkForBox(sudoku)) {
-            return 1;
-        }
-        return 0;
-
-    }
+//    public int isValidSudoku(final List<String> A) {
+//        int[][] sudoku = new int[9][9];
+//
+//        int k = -1;
+//        for(String s:A) {
+//            k++;
+//            for (int i = 0; i < s.length(); i++) {
+//                if(s.charAt(i) == '.') {
+//                    sudoku[k][i] = -1;
+//                } else {
+//                    sudoku[k][i] = Integer.parseInt(String.valueOf(s.charAt(i)));
+//                }
+//            }
+//        }
+//        if(checkRow(sudoku) && checkColumn(sudoku) && checkForBox(sudoku)) {
+//            return 1;
+//        }
+//        return 0;
+//
+//    }
 
     /**
      * num[10] used to find duplicate in a row
@@ -110,9 +107,44 @@ public class ValidSudoku {
         string.add("...54....");
         string.add("3.....42.");
         string.add("...27.6..");
-        System.out.println(new ValidSudoku().isValidSudoku(string));
+
+//        String[] strings = {"....5..1.", ".4.3.....", ".....3..1", "8......2.", "..2.7....", ".15......", ".....2...", ".2.9.....", "..4......"};
+        String[] strings = { "..4...63.", ".........", "5......9.", "...56....", "4.3.....1", "...7.....", "...5.....", ".........", "........."};
+        System.out.println(new ValidSudoku().isValidSudoku(Arrays.asList(strings)));
+//        System.out.println(new ValidSudoku().isValidSudoku(string));
 
     }
 
 
+    public int isValidSudoku(final List<String> A) {
+        Map<Integer, Set<Integer>> mapValues = new HashMap<>();
+        Map<Integer, Set<Integer>> rowVals = new HashMap<>();
+        Map<Integer, Set<Integer>> colVals = new HashMap<>();
+        int k = -1;
+        for(String s:A) {
+            k++;
+            for (int i = 0; i < s.length(); i++) {
+                int val;
+                if(s.charAt(i) == '.') {
+                    val = -1;
+                } else {
+                    val = Integer.parseInt(String.valueOf(s.charAt(i)));
+                }
+                int box = ((k/3)*3)+ (i/3);
+                mapValues.putIfAbsent(box, new HashSet<>());
+                colVals.putIfAbsent(i, new HashSet<>());
+                rowVals.putIfAbsent(k, new HashSet<>());
+                if (val!=-1 && (mapValues.get(box).contains(val) || rowVals.get(k).contains(val) || colVals.get(i).contains(val))) {
+                    return 0;
+                }
+                mapValues.get(box).add(val);
+                rowVals.get(k).add(val);
+                colVals.get(i).add(val);
+            }
+        }
+        return 1;
+    }
+
+
 }
+

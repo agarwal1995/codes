@@ -20,6 +20,9 @@ public class ReverseAlternateKNodes {
         ListNode result = null;
         ListNode resultL = null;
         boolean doReverse = true;
+        if (B==1 || A==null || A.next==null) {
+            return A;
+        }
         while(A!=null) {
             int k = B-1;
             ListNode tmp = A;
