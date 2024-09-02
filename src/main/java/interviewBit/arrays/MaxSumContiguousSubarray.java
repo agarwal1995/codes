@@ -4,14 +4,20 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Find the contiguous subarray within an array, A of length N which has the largest sum.
+ *
  * @author raag
  */
 public class MaxSumContiguousSubarray {
 
-    public static void main(String[] args) {
-
-    }
-
+    /**
+     * iterate the list, and keep variable maxSum and sumTillNow
+     * maxSum: maxSum found at any particular moment
+     * sumTillNow:  sumOf the elements till x index where sum >0,
+     *              if <0 then make it 0 and start afresh the list
+     * @param A integer array
+     * @return maxSubArraySum
+     */
     public int maxSubArray(final List<Integer> A) {
         int sumTillNow = 0;
         int maxSum = Integer.MIN_VALUE;
