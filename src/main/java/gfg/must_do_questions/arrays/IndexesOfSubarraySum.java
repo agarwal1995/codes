@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
+ * IndexesOfSubarraySum is a class that provides functionality to find the starting and ending
+ * indexes of a contiguous subarray within a given array that sums to a specified value.
+ *
  * @author raag
  */
 public class IndexesOfSubarraySum {
